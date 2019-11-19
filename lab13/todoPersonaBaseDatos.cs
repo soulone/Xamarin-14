@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace lab13
 {
-    public class todoPersonaBaseDatos
+    public class TodoPersonaBaseDatos
     {
         readonly SQLiteAsyncConnection database;
 
-        public todoPersonaBaseDatos(string dbPath)
+        public TodoPersonaBaseDatos(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<TodoPersona>().Wait();
@@ -24,7 +24,7 @@ namespace lab13
 
         public Task<List<TodoPersona>> GetItemsNotDoneAsync()
         {
-            return database.QueryAsync<TodoPersona>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return database.QueryAsync<TodoPersona>("SELECT * FROM [TodoPersona] WHERE [Done] = 0");
         }
 
         public Task<TodoPersona> GetItemAsync(int id)
